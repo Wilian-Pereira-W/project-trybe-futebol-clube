@@ -1,4 +1,5 @@
 import * as express from 'express';
+import * as cors from 'cors';
 import validateLogin from './middleware/validateLogin';
 import LoginController from './controllers/loginController';
 
@@ -24,6 +25,7 @@ class App {
 
     this.app.use(accessControl);
     this.app.use(express.json());
+    this.app.use(cors());
     // ...
   }
 
