@@ -10,10 +10,12 @@ services:
         condition: service_healthy
     healthcheck:
       test: ["CMD", "lsof", "-t", "-i:3000"]
-      timeout: 25s
-      retries: 15
+      timeout: 10s
+      retries: 5
   backend:
     build: ./backend
+    links:
+      - db
     container_name: app_backend
     ports:
       - 3001:3301
@@ -29,8 +31,8 @@ services:
       - DB_PORT=3306
     healthcheck:
       test: ["CMD", "lsof", "-t", "-i:3001"] 
-      timeout: 25s
-      retries: 15
+      timeout: 10s
+      retries: 5
   db:
     image: mysql:8.0.21
     container_name: db
@@ -41,7 +43,7 @@ services:
     restart: 'always'
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"] 
-      timeout: 25s
-      retries: 15
+      timeout: 10s
+      retries: 5
     cap_add:
       - SYS_NICE
