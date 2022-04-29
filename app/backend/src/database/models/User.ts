@@ -3,9 +3,13 @@ import db from '.';
 
 class User extends Model {
   id!: number;
+
   username!: string;
+
   role!: string;
+
   email!: string;
+
   password!: string;
 }
 
@@ -14,7 +18,7 @@ User.init({
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
-    type: INTEGER
+    type: INTEGER,
   },
   username: {
     type: STRING,
@@ -31,7 +35,7 @@ User.init({
   password: {
     type: STRING,
     allowNull: false,
-  }
+  },
 }, {
   underscored: true,
   sequelize: db,
