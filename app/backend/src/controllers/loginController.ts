@@ -5,7 +5,7 @@ class LoginController {
   static async login(req: Request, res: Response) {
     try {
       const { email } = req.body;
-      const user = await LoginServices.create(email);
+      const user = await LoginServices.findOneUser(email);
       return res.status(200).json(user);
     } catch (error) {
       console.log(error);

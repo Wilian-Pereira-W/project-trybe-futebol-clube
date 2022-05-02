@@ -3,7 +3,7 @@ import tokenJwt from '../utils/tokenJwt';
 import Iuser from '../interface/user';
 
 class LoginServices {
-  static async create(email: string) {
+  static async findOneUser(email: string) {
     const user = await UserModel.findOne({
       where: {
         email,
