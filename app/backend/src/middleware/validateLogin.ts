@@ -7,11 +7,11 @@ class ValidateLogin {
     const isValid = emailFormat.test(email);
 
     if (!email) {
-      res.status(400).json({ message: 'All fields must be filled' });
+      return res.status(400).json({ message: 'All fields must be filled' });
     }
 
     if (!isValid) {
-      res.status(401).json({ message: 'Incorrect email or password' });
+      return res.status(401).json({ message: 'Incorrect email or password' });
     }
     next();
   }
@@ -20,11 +20,11 @@ class ValidateLogin {
     const { password } = req.body;
 
     if (!password) {
-      res.status(400).json({ message: 'All fields must be filled' });
+      return res.status(400).json({ message: 'All fields must be filled' });
     }
 
     if (password.length <= 6) {
-      res.status(401).json({ message: 'Incorrect email or password' });
+      return res.status(401).json({ message: 'Incorrect email or password' });
     }
     next();
   }
