@@ -29,7 +29,7 @@ class App {
     // ...
   }
 
-  router(): void {
+  private router(): void {
     this.app.get('/test', (_req, res) => res.status(200).json({ message: 'foi' }));
     this.app.post(
       '/login',
@@ -37,6 +37,7 @@ class App {
       validateLogin.validatePassword,
       LoginController.login,
     );
+    this.app.get('/vai', (_req, res) => res.status(200).json({ message: 'vai' }));
   }
 
   // ...
