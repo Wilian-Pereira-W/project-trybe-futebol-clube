@@ -40,6 +40,7 @@ class App {
     );
     this.app.get('/login/validate', validateToken.authorizationToken, LoginController.getRole);
     this.app.get('/teams', TeamController.findAllTeams);
+    this.app.get('/teams/:id', TeamController.findByPkTeam);
   }
 
   // ...
