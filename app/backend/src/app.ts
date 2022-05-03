@@ -46,6 +46,7 @@ class App {
 
     this.app.get('/matches', MatcheController.findAllMatches);
     this.app.post('/matches', MatcheController.createMatches);
+    this.app.patch('/matches/:id/finish', MatcheController.finishedMatches)
   }
 
   // ...
