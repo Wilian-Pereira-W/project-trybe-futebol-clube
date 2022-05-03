@@ -28,6 +28,11 @@ class MatchServices {
     }
    
   }
+
+  static async createMatches(homeTeam: number, awayTeam: number, homeTeamGoals: number, awayTeamGoals: number, inProgress: boolean) {
+    const newMatch = await MatchModel.create({homeTeam, homeTeamGoals, awayTeam, awayTeamGoals, inProgress});
+    return newMatch;
+  }
 };
 
 export default MatchServices;
