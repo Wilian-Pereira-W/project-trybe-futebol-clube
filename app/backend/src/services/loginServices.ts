@@ -10,7 +10,7 @@ class LoginServices {
       },
     }) as Iuser || null;
 
-    const token = await tokenJwt.createToken({ id: user.id, username: user.username });
+    const token = await tokenJwt.createToken({ id: user.id, role: user.role });
     return {
       user:
       { id: user.id, username: user.username, role: user.role, email: user.email },
