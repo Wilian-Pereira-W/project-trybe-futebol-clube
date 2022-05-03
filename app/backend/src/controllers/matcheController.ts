@@ -36,6 +36,13 @@ class MatcheController {
     await MatchServices.finishedMatches(id);
     return res.status(200).json({message: 'Finalizando a partida'});
   }
+
+  static async updateScore(req: Request, res: Response){
+    const { id } = req.params;
+    const { homeTeamGoals, awayTeamGoals, inProgress } = req.body;
+    await MatchServices.updateScore(id, homeTeamGoals, awayTeamGoals);
+    return res.status(200).json({message: 'Atualizando o Placar'});
+  }
 }
 
 export default MatcheController;
