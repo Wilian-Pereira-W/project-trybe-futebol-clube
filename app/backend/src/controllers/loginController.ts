@@ -11,6 +11,15 @@ class LoginController {
       console.log(error);
     }
   }
+
+  static async getRole(req: Request, res: Response) {
+    try {
+      const user = req.body.token;
+      return res.status(200).send(user.role);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 export default LoginController;
