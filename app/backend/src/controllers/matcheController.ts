@@ -30,6 +30,12 @@ class MatcheController {
       console.log(error);
     }
   }
+
+  static async finishedMatches(req: Request, res: Response){
+    const { id } = req.params
+    await MatchServices.finishedMatches(id);
+    return res.status(200).json({message: 'Finalizando a partida'});
+  }
 }
 
 export default MatcheController;
