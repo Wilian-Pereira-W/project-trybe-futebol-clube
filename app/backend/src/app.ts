@@ -1,6 +1,7 @@
 import * as express from 'express';
 import * as cors from 'cors';
 import validateLogin from './middleware/validateLogin';
+import validateToken from './middleware/validateToken';
 import LoginController from './controllers/loginController';
 import TeamController from './controllers/teamController';
 
@@ -37,7 +38,7 @@ class App {
       validateLogin.validatePassword,
       LoginController.login,
     );
-    // this.app.get('/login/validate', LoginController.getRole);
+    this.app.get('/login/validate', validateToken.authorizationToken, LoginController.getRole);
     this.app.get('/teams', TeamController.findAllTeams);
   }
 
