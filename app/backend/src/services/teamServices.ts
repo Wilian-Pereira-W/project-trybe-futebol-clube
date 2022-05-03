@@ -5,6 +5,11 @@ class TeamServices {
     const teams = await TeamModel.findAll();
     return teams;
   }
+
+  static async findByPkTeam(id: string) {
+    const team = await TeamModel.findByPk(id);
+    return team;
+  }
 }
 
 export default TeamServices;
