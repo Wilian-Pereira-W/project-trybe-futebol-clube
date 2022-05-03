@@ -45,7 +45,7 @@ class App {
     this.app.get('/teams/:id', TeamController.findByPkTeam);
 
     this.app.get('/matches', MatcheController.findAllMatches);
-
+    this.app.post('/matches', MatcheController.createMatches);
   }
 
   // ...
