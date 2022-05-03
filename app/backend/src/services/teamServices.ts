@@ -1,7 +1,7 @@
 import TeamModel from '../database/models/Team';
 
 class TeamServices {
-  static async findAllTeams () {
+  static async findAllTeams() {
     const teams = await TeamModel.findAll();
     return teams;
   }
