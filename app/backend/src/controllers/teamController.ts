@@ -10,6 +10,17 @@ class TeamController {
       console.log(error);
     }
   }
+  
+  static async findByPkTeam(req: Request, res: Response) {
+    const { id } = req.params;
+    try {
+      const team = await TeamServices.findByPkTeam(id);
+      return res.status(200).json(team);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 }
 
 export default TeamController;
