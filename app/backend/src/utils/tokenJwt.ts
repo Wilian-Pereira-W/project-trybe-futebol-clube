@@ -6,7 +6,7 @@ const getSecret = async () => readFile('jwt.evaluation.key', 'utf-8');
 const createToken = async (
   payload: {
     id: number,
-    username: string,
+    role: string,
   },
 ) => {
   const jwtConfig = {
