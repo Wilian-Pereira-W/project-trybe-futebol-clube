@@ -33,6 +33,14 @@ class MatchServices {
     const newMatch = await MatchModel.create({homeTeam, homeTeamGoals, awayTeam, awayTeamGoals, inProgress});
     return newMatch;
   }
+
+  static async thereIsTheTeam(homeTeam: number, awayTeam: number) {
+    const thereIsHomeTeam = await TeamModel.findByPk(homeTeam);
+    const thereIsAwayTeam = await TeamModel.findByPk(awayTeam);
+    if( thereIsHomeTeam === null || thereIsAwayTeam === null) {
+      return true;
+    }
+  }
 };
 
 export default MatchServices;
