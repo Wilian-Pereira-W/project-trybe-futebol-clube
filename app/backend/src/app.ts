@@ -4,6 +4,7 @@ import validateLogin from './middleware/validateLogin';
 import validateToken from './middleware/validateToken';
 import LoginController from './controllers/loginController';
 import TeamController from './controllers/teamController';
+import MatcheController from './controllers/matcheController';
 
 class App {
   public app: express.Express;
@@ -39,8 +40,12 @@ class App {
       LoginController.login,
     );
     this.app.get('/login/validate', validateToken.authorizationToken, LoginController.getRole);
+
     this.app.get('/teams', TeamController.findAllTeams);
     this.app.get('/teams/:id', TeamController.findByPkTeam);
+
+    this.app.get('/matches', MatcheController.findAllMatches);
+
   }
 
   // ...
