@@ -2,6 +2,7 @@ import * as express from 'express';
 import * as cors from 'cors';
 import validateLogin from './middleware/validateLogin';
 import LoginController from './controllers/loginController';
+import TeamController from './controllers/teamController';
 
 class App {
   public app: express.Express;
@@ -30,14 +31,14 @@ class App {
   }
 
   private router(): void {
-    this.app.get('/test', (_req, res) => res.status(200).json({ message: 'foi' }));
     this.app.post(
       '/login',
       validateLogin.validateEmail,
       validateLogin.validatePassword,
       LoginController.login,
     );
-    this.app.get('/vai', (_req, res) => res.status(200).json({ message: 'vai' }));
+    // this.app.get('/login/validate', LoginController.getRole);
+    this.app.get('/teams', TeamController.findAllTeams);
   }
 
   // ...
