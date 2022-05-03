@@ -11,6 +11,16 @@ class MatcheController {
       console.log(error);
     }
   }
+
+  static async createMatches(req: Request, res: Response) {
+    const {homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, inProgress} = req.body;
+    try {
+      const newMatch = await MatchServices.createMatches(homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, inProgress);
+      return res.status(201).json(newMatch);
+    } catch (error) {
+      
+    }
+  }
 }
 
 export default MatcheController;
