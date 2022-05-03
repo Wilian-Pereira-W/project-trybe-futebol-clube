@@ -20,18 +20,7 @@ const createToken = async (
   return token;
 };
 
-const validateToken = async (token: string) => {
-  try {
-    const secret = await getSecret();
-
-    const decoded = jwt.verify(token, secret);
-    return decoded;
-  } catch (error) {
-    console.log(error);
-  }
-};
 
 export default {
   createToken,
-  validateToken,
 };
