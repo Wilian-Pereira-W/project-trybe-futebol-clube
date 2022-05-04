@@ -90,6 +90,24 @@ describe('Post /login', () => {
 
 });
 
+describe('Get /login/validate', () => {
+  describe('Quando não tem o token', () => {
+    let response: Response;
+    before( async () => {
+      response = await chai.request(app).get('/login/validate').send({});
+    });
+    it('retorna código de status 401', () => {
+      expect(response).to.have.status(401);
+    });
+    it('retorna um objeto no body', () => {
+      expect(response.body).to.be.an('object');
+    });
+    it('objeto de resposta possui a proprieade "Token not found"', () => {
+      expect(response.body.error).to.be.equals('Token not found');
+    })
+  });
+});
+
 describe('Get /teams/:id', () => {
   before(async () => {
     sinon
@@ -103,7 +121,7 @@ describe('Get /teams/:id', () => {
   describe('Quando passa o id do time', () => {
     let response: Response;
     before( async () => {
-      response = await chai.request(app).get('/teams/1').send();
+      response = await chai.request(app).get('/teams/1').send({});
     });
     it('retorna código de status 200', () => {
       expect(response).to.have.status(200);
@@ -130,7 +148,7 @@ describe('Get /teams', () => {
   describe('Quando passa o id do time', () => {
     let response: Response;
     before( async () => {
-      response = await chai.request(app).get('/teams').send();
+      response = await chai.request(app).get('/teams').send({});
     });
     it('retorna código de status 200', () => {
       expect(response).to.have.status(200);
