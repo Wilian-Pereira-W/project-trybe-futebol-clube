@@ -7,7 +7,10 @@ import { app } from '../app';
 
 import { Response } from 'superagent';
 import  User from '../database/models/User';
-import userMock from './mock/user'
+import Team from '../database/models/Team';
+import userMock from './mock/user';
+import teamMock from './mock/team';
+import teamsMock from './mock/teams'
 
 chai.use(chaiHttp);
 
@@ -24,7 +27,7 @@ describe('Post /login', () => {
 
   after(()=>{
     (User.findOne as sinon.SinonStub).restore();
-  })
+  });
   describe('Quando não é passado o email e a senha', () => {
     let response: Response;
     before( async () => {
@@ -85,4 +88,55 @@ describe('Post /login', () => {
   });
 
 
+});
+
+describe('Get /teams/:id', () => {
+  before(async () => {
+    sinon
+      .stub(Team, "findByPk")
+      .resolves(teamMock as Team);
+  });
+
+  after(()=>{
+    (Team.findByPk as sinon.SinonStub).restore();
+  });
+  describe('Quando passa o id do time', () => {
+    let response: Response;
+    before( async () => {
+      response = await chai.request(app).get('/teams/1').send();
+    });
+    it('retorna código de status 200', () => {
+      expect(response).to.have.status(200);
+    });
+    it('retorna um objeto no body', () => {
+      expect(response.body).to.be.an('object');
+    });
+    it('retorna o time Avaí/Kindermann', () => {
+      expect(response.body.teamName).to.be.equals('Avaí/Kindermann');
+    });
+  });
+});
+
+describe('Get /teams', () => {
+  before(async () => {
+    sinon
+      .stub(Team, "findAll")
+      .resolves(teamsMock as Team[]);
+  });
+
+  after(()=>{
+    (Team.findAll as sinon.SinonStub).restore();
+  });
+  describe('Quando passa o id do time', () => {
+    let response: Response;
+    before( async () => {
+      response = await chai.request(app).get('/teams').send();
+    });
+    it('retorna código de status 200', () => {
+      expect(response).to.have.status(200);
+    });
+    it('retorna um array no body', () => {
+      expect(response.body).to.be.an('array');
+    });
+  });
 });
