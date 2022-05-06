@@ -20,7 +20,6 @@ const createToken = async (
   return token;
 };
 
-
 export default {
   createToken,
 };
