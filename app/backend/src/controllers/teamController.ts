@@ -10,7 +10,7 @@ class TeamController {
       console.log(error);
     }
   }
-  
+
   static async findByPkTeam(req: Request, res: Response) {
     const { id } = req.params;
     try {
@@ -20,7 +20,6 @@ class TeamController {
       console.log(error);
     }
   }
-
 }
 
 export default TeamController;
