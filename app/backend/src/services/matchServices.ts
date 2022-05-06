@@ -1,8 +1,10 @@
+import { ParsedQs } from 'qs';
 import TeamModel from '../database/models/Team';
 import MatchModel from '../database/models/Matche';
+import IdadosPartidas from '../interface/partidas';
 
 class MatchServices {
-  static async findAllMatches(inProgress: any) {
+  static async findAllMatches(inProgress: string | string[] | ParsedQs | ParsedQs[] | undefined) {
     if (inProgress === undefined) {
       const matches = await MatchModel.findAll({
         include: [
@@ -23,9 +25,9 @@ class MatchServices {
     }
   }
 
-  static async createMatches(homeTeam: number, awayTeam: number, homeTeamGoals: number, awayTeamGoals: number, inProgress: boolean) {
+  static async createMatches(payload: IdadosPartidas) {
     const newMatch = await MatchModel
-      .create({ homeTeam, homeTeamGoals, awayTeam, awayTeamGoals, inProgress });
+      .create(payload);
     return newMatch;
   }
 
