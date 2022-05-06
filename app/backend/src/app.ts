@@ -5,6 +5,7 @@ import validateToken from './middleware/validateToken';
 import LoginController from './controllers/loginController';
 import TeamController from './controllers/teamController';
 import MatcheController from './controllers/matcheController';
+import LeaderboardController from './controllers/leaderboardController';
 
 class App {
   public app: express.Express;
@@ -48,6 +49,8 @@ class App {
     this.app.post('/matches', MatcheController.createMatches);
     this.app.patch('/matches/:id/finish', MatcheController.finishedMatches);
     this.app.patch('/matches/:id', MatcheController.updateScore);
+
+    this.app.get('/leaderboard/home', LeaderboardController.findAllLeaderboardsHome);
   }
 
   // ...
