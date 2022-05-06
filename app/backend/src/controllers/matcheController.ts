@@ -31,17 +31,17 @@ class MatcheController {
     }
   }
 
-  static async finishedMatches(req: Request, res: Response){
-    const { id } = req.params
+  static async finishedMatches(req: Request, res: Response) {
+    const { id } = req.params;
     await MatchServices.finishedMatches(id);
-    return res.status(200).json({message: 'Finalizando a partida'});
+    return res.status(200).json({ message: 'Finalizando a partida' });
   }
 
-  static async updateScore(req: Request, res: Response){
+  static async updateScore(req: Request, res: Response) {
     const { id } = req.params;
-    const { homeTeamGoals, awayTeamGoals, inProgress } = req.body;
+    const { homeTeamGoals, awayTeamGoals } = req.body;
     await MatchServices.updateScore(id, homeTeamGoals, awayTeamGoals);
-    return res.status(200).json({message: 'Atualizando o Placar'});
+    return res.status(200).json({ message: 'Atualizando o Placar' });
   }
 }
 
